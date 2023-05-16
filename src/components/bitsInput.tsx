@@ -1,6 +1,11 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
-import Section from './section';
+import {
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  useColorScheme,
+} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 type BitsInputProps = {
   sharedBits: string;
@@ -8,32 +13,38 @@ type BitsInputProps = {
 };
 
 const BitsInput: React.FC<BitsInputProps> = ({sharedBits, setSharedBits}) => {
+  const isDarkMode = useColorScheme() === 'dark';
+
   const handleNumberChange = (text: string): void => {
     const sanitizedText = text.replace(/[^0-9]/g, '');
     setSharedBits(sanitizedText);
   };
 
   return (
-    <Section title={''}>
+    <>
       <SafeAreaView>
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            {borderColor: isDarkMode ? Colors.white : Colors.black},
+            {color: isDarkMode ? Colors.white : Colors.black},
+          ]}
           keyboardType="numeric"
           value={sharedBits}
           onChangeText={handleNumberChange}
           placeholder="Enter a number"
         />
       </SafeAreaView>
-    </Section>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
+    height: 30,
+    width: 80,
     borderWidth: 1,
-    margin: 12,
-    padding: 10,
+    marginLeft: 24,
   },
 });
 

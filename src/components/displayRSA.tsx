@@ -1,16 +1,27 @@
 import React from 'react';
-import {Text} from 'react-native';
 import Section from './section';
 
 type DisplayRSAProps = {
-  sharedBits: string;
+  n: string;
+  p: string;
+  q: string;
+  e: string;
+  d: string;
 };
 
-const DisplayRSA: React.FC<DisplayRSAProps> = ({sharedBits}) => {
+const DisplayRSA: React.FC<DisplayRSAProps> = ({n, p, q, e, d}) => {
   return (
-    <Section title="Here is your RSA key pair">
-      <Text>Hello, World</Text>
-      <Text>{sharedBits}</Text>
+    <Section title="Here is your RSA private key">
+      {'\n'}
+      n: {n}
+      {'\n\n'}
+      p: {p}
+      {'\n\n'}
+      q: {q}
+      {'\n\n'}
+      e: {e}
+      {'\n\n'}
+      d: {d}
     </Section>
   );
 };

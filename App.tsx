@@ -15,7 +15,12 @@ import DisplayRSA from './src/components/displayRSA';
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const [sharedBits, setSharedBits] = useState<string>('512');
+  const [sharedBits, setSharedBits] = useState<string>('1024');
+  const [n, setN] = useState<string>('');
+  const [p, setP] = useState<string>('');
+  const [q, setQ] = useState<string>('');
+  const [e, setE] = useState<string>('');
+  const [d, setD] = useState<string>('');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -29,17 +34,27 @@ function App(): JSX.Element {
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{flexGrow: 1}}
         style={backgroundStyle}>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Hello, World!">
-            This is my app!{'\n\n'}
-            Here you can create a randomly generated RSA key pair!
+          <Section title="Welcome!">
+            I am Ethan Vaughan and this is my app!{'\n\n'}
+            Here you can create a randomly generated RSA private key!
           </Section>
-          <GenerateRSA sharedBits={sharedBits} setSharedBits={setSharedBits} />
-          <DisplayRSA sharedBits={sharedBits} />
+          <GenerateRSA
+            sharedBits={sharedBits}
+            setSharedBits={setSharedBits}
+            setN={setN}
+            setP={setP}
+            setQ={setQ}
+            setE={setE}
+            setD={setD}
+          />
+          <DisplayRSA n={n} p={p} q={q} e={e} d={d} />
         </View>
       </ScrollView>
     </SafeAreaView>

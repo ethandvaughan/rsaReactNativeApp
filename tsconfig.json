@@ -1,6 +1,10 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+    "lib": ["es2020", "dom"],
+    "module": "commonjs",
+    "target": "es6",
+    "esModuleInterop": true
   },
 }
